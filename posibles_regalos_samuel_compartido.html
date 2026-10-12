@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posibles regalos para Samuel Ropero Pineda</title>
+<style>
+:root{--blue:#28669a;--deep:#174a78;--sky:#dff2ff;--pale:#f5fbff;--line:#b9def7;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--deep);background:linear-gradient(180deg,#dff2ff 0%,#eff9ff 55%,#d8eeff 100%);min-height:100vh}
+.wrap{width:min(1050px,100%);margin:auto;padding:22px 16px 40px}
+.hero{position:relative;text-align:center;padding:30px 18px 24px;border:2px dashed #8dc4ec;border-radius:34px;background:rgba(255,255,255,.8);box-shadow:0 8px 24px #79b5df25;overflow:hidden}
+.teddy{font-size:clamp(2.5rem,7vw,4.5rem);position:absolute;top:14px;filter:drop-shadow(0 3px 1px #9ac9e0)}
+.teddy.left{left:16px}.teddy.right{right:16px}
+h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.13;margin:18px 70px 12px;color:#205e93}
+.subtitle{font-size:1.08rem;line-height:1.6;max-width:720px;margin:0 auto}
+.heart{color:#4e9bd0}
+.note{margin:18px auto 0;max-width:760px;padding:13px 16px;background:#e5f4ff;border-radius:18px;line-height:1.55}
+.panel{margin-top:20px;background:#ffffffc9;border:1px solid #c4e3f8;border-radius:22px;padding:18px;box-shadow:0 6px 20px #4c91c01a}
+label{font-weight:700;display:block;margin-bottom:8px}
+.name-row{display:flex;gap:10px;flex-wrap:wrap}
+input{flex:1;min-width:200px;padding:13px 14px;border:1.5px solid #a9d2f0;border-radius:13px;font:inherit;color:var(--deep);background:white}
+input:focus{outline:3px solid #b9e1ff}
+.small{font-size:.9rem;color:#426e91;margin:8px 0 0}
+h2{font-size:1.35rem;margin:0 0 14px;color:#205e93}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:11px}
+.gift{display:flex;align-items:center;gap:12px;padding:14px;background:white;border:1px solid #c8e4f7;border-radius:17px;min-height:78px;box-shadow:0 3px 9px #5c9ac014}
+.gift .emoji{font-size:1.65rem;flex-shrink:0}
+.gift .gift-name{font-weight:650;line-height:1.35;flex:1}
+button{border:0;border-radius:12px;background:#2d78b4;color:white;font:inherit;font-weight:700;padding:11px 14px;cursor:pointer;transition:transform .12s,background .12s}
+button:hover{background:#1d5f96;transform:translateY(-1px)}
+button:disabled{background:#91b9d8;cursor:default;transform:none}
+.empty{padding:18px;background:#f0f9ff;border-radius:15px;color:#527b9b}
+.selected-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#eef8ff;border:1px solid #c4e3f8;padding:12px 14px;border-radius:14px;margin-top:9px}
+.selected-item strong{display:block}.selected-item span{font-size:.9rem;color:#527b9b}
+footer{text-align:center;padding:26px 10px 8px;font-size:1.1rem;font-weight:700}
+.foot-teddy{font-size:2rem}
+.toast{display:none;margin:12px 0 0;padding:11px 14px;border-radius:12px;background:#e1f7e8;color:#23633b}
+@media(max-width:520px){.wrap{padding:12px 10px 28px}.hero{padding:70px 13px 20px}.teddy{top:8px;font-size:2.5rem}.teddy.left{left:12px}.teddy.right{right:12px}h1{margin:4px 0 12px}.gift{padding:11px}.gift button{padding:10px;font-size:.9rem}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+  <div class="teddy left" aria-hidden="true">🧸</div><div class="teddy right" aria-hidden="true">🧸💙</div>
+  <h1>Posibles regalos para<br>Samuel Ropero Pineda</h1>
+  <p class="subtitle">¡Estamos muy felices de la llegada de Samuel! <span class="heart">♡</span></p>
+  <p class="note">Esta lista se creó para ayudarnos a organizar los regalos y evitar que se repitan. <strong>Elige el que más se acomode a tu presupuesto</strong>; cualquier detalle será recibido con muchísimo cariño. ¡Gracias por ser parte de esta etapa tan especial! 💙</p>
+</header>
+
+<section class="panel">
+  <label for="guestName">Primero, escribe tu nombre:</label>
+  <div class="name-row"><input id="guestName" maxlength="80" placeholder="Nombre y apellido" autocomplete="name"><button id="saveName">Guardar nombre</button></div>
+  <p class="small">Después, pulsa “Elegir regalo” junto al detalle que quieras llevar.</p>
+  <div id="notice" class="toast" role="status"></div>
+</section>
+
+<section class="panel">
+  <h2>🎁 Regalos disponibles <span id="availableCount"></span></h2>
+  <div id="giftList" class="grid"></div>
+</section>
+
+<section class="panel">
+  <h2>💙 Regalos elegidos</h2>
+  <p class="small">Aquí aparecerá el regalo y el nombre de quien lo seleccionó.</p>
+  <div id="selectedList"></div>
+  <p class="small" id="selectedCount"></p>
+</section>
+<footer><div class="foot-teddy">☁️ 🧸 💙 🧸 ☁️</div>¡Gracias por tu cariño y por acompañar a Samuel! <span class="heart">♡</span></footer>
+</main>
+<script>
+const API_URL = "PEGA_AQUI_LA_URL_DE_TU_APLICACION_WEB";
+const gifts = ["Coche para bebé", "Pañales desechables de diferentes tallas", "Toallitas húmedas", "Pañalera", "Cambiador portátil", "Kit de aseo", "Bañera para bebé", "Pijamas", "Conjuntos de ropa", "Bodies (mamelucos)", "Mantas y cobijas", "Toallas con capucha", "Baberos", "Medias y gorritos", "Biberones y cepillo limpiabiberones", "Extractor de leche materna", "Recipientes para almacenar la leche materna", "Esterilizador de biberones", "Cuna", "Silla mecedora para bebé", "Portabebés ergonómicos"];
+let state = { selected: [] };
+const emojis = ["🚼","🧷","🫧","🎒","🍼","🧴","🛁","👕","👶","🩱","🧸","🛁","🧸","🧦","🍼","🤱","🫙","♨️","🛏️","🪑","👶"];
+const $ = id => document.getElementById(id);
+function notice(msg){$("notice").textContent=msg;$("notice").style.display="block";}
+async function loadState(showError=true){
+  if(API_URL.includes("PEGA_AQUI")){
+    draw();
+    if(showError) notice("Falta conectar la URL compartida de Google Apps Script. Sigue las instrucciones incluidas.");
+    return;
+  }
+  try {
+    const res = await fetch(API_URL, {cache:"no-store"});
+    const data = await res.json();
+    if(!data.ok) throw new Error("No se pudo leer la lista compartida.");
+    state.selected = data.selected || [];
+    draw();
+  } catch(e) {
+    if(showError) notice("No se pudo conectar con la lista compartida. Verifica la URL y la implementación.");
+  }
+}
+function draw(){
+ const chosen = new Set(state.selected.map(x=>x.gift));
+ const available = gifts.filter(g=>!chosen.has(g));
+ $("availableCount").textContent = `(${available.length})`;
+ $("giftList").innerHTML = "";
+ if(!available.length){$("giftList").innerHTML='<div class="empty">¡Todos los regalos de esta lista ya fueron seleccionados! 💙</div>';}
+ available.forEach(g=>{
+   const i=gifts.indexOf(g), card=document.createElement("article");card.className="gift";
+   const icon=document.createElement("span");icon.className="emoji";icon.textContent=emojis[i]||"🎁";
+   const name=document.createElement("span");name.className="gift-name";name.textContent=g;
+   const btn=document.createElement("button");btn.textContent="Elegir regalo";btn.addEventListener("click",async()=>{
+     const guest=$("guestName").value.trim();
+     if(!guest){$("guestName").focus();notice("Escribe tu nombre antes de elegir un regalo.");return;}
+     if(API_URL.includes("PEGA_AQUI")){notice("La lista aún no está conectada. Sigue las instrucciones de configuración.");return;}
+     btn.disabled=true;
+     try {
+       const res=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"select",gift:g,name:guest})});
+       const data=await res.json();
+       if(!data.ok){notice(data.error||"No se pudo registrar la selección.");await loadState(false);return;}
+       notice(`¡Gracias, ${guest}! Tu elección quedó registrada para todos.`);
+       await loadState(false);
+     } catch(e){notice("No se pudo guardar. Comprueba tu conexión e inténtalo de nuevo.");}
+     finally{btn.disabled=false;}
+   });
+   card.append(icon,name,btn);$("giftList").append(card);
+ });
+ $("selectedList").innerHTML="";
+ if(!state.selected.length){$("selectedList").innerHTML='<div class="empty">Todavía no se han seleccionado regalos.</div>';}
+ state.selected.forEach(x=>{
+   const item=document.createElement("div");item.className="selected-item";
+   const info=document.createElement("div"),strong=document.createElement("strong"),span=document.createElement("span");
+   strong.textContent=x.gift;span.textContent="Seleccionado por: "+x.name;info.append(strong,span);
+   item.append(info);$("selectedList").append(item);
+ });
+ $("selectedCount").textContent=`${state.selected.length} de ${gifts.length} regalos seleccionados.`;
+}
+$("saveName").addEventListener("click",()=>{const name=$("guestName").value.trim();if(!name){notice("Escribe tu nombre para continuar.");return;}try{sessionStorage.setItem("samuel-guest-name",name)}catch(e){}notice(`¡Hola, ${name}! Ya puedes elegir tu regalo.`)});
+try{$("guestName").value=sessionStorage.getItem("samuel-guest-name")||""}catch(e){}
+loadState();
+setInterval(()=>loadState(false),15000);
+</script>
+</body></html>
